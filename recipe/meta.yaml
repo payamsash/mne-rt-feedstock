@@ -1,4 +1,4 @@
-{% set version = "1.0.0" %}
+{% set version = "1.0.1" %}
 {% set python_min = "3.11" %}
 
 package:
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.org/packages/source/m/mne-rt/mne_rt-{{ version }}.tar.gz
-  sha256: a656cc6288695225a1d0fdea551a6275a40230e909702f828178e0e0bf6251d1
+  sha256: 5f1928af0b229d9d8d181ccc9b4ae943aa32fffde68812b162b07b301225d1f7
 
 build:
   entry_points:
@@ -32,7 +32,6 @@ requirements:
     - scipy >=1.13
     - matplotlib-base >=3.9
     - nibabel >=5.0
-    - pyqt6 >=6.7
     - pyqtgraph >=0.13
     - qtpy >=2.4
     - pyserial >=3.0
@@ -48,9 +47,7 @@ test:
   imports:
     - mne_rt
   commands:
-    # Needs mne-lsl fix (https://github.com/conda-forge/mne-lsl-feedstock/pull/34 and/or https://github.com/mne-tools/mne-lsl/pull/549)
-    # - pip check
-    # mne-rt --help crashes on Windows (CP1252 encoding) until 1.0.1 is released
+    - pip check
     - python -c "import mne_rt; assert mne_rt.__version__ == '{{ version }}', mne_rt.__version__"
   requires:
     - python {{ python_min }}
